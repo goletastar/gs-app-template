@@ -53,7 +53,7 @@ your develop branch and push it to your shiny new repository::
 Note this can be any tag, even a "lightweight" tag.  This will allow the cmake
 files to use ``git describe`` to generate the SCM_VERSION_INFO used in the build.
 
-.. _create a gh-pages branch: https://jiafulow.github.io/blog/2020/07/09/create-gh-pages-branch-in-existing-repo/
+.. _create a gh-pages branch: https://stackoverflow.com/questions/4750520/git-branch-gh-pages
 
 Finally, when these adjustments are done, delete this block of text between
 the BEGIN- and END- marker comments.
