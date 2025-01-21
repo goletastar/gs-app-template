@@ -1,0 +1,17 @@
+# build system
+build/**
+metrics/**
+html/**
+coverage/
+coverage.info
+coverage.xml
+.tox/
+.env/
+
+# vim
+.*.sw[a-z]
+tags
+
+# misc
+*.diff
+*.patch
