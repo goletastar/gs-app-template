@@ -16,10 +16,8 @@ jobs:
     permissions:
       # required for all workflows
       security-events: write
-
       # required to fetch internal or private CodeQL packs
       packages: read
-
       # only required for workflows in private repositories
       actions: read
       contents: read
@@ -58,6 +56,8 @@ jobs:
             - '.github/workflows'
           paths-ignore:
             - app_name/test
+            - '.ext'
+            - '.env'
 
     - if: matrix.build-mode == 'manual'
       name: Deps (no msg bus)
@@ -68,7 +68,7 @@ jobs:
         sudo add-apt-repository -y -s ppa:ubuntu-toolchain-r/ppa
         sudo apt-get -qq update
         sudo apt-get install -yqq libredis-ipc-dev libgtest-dev libgmock-dev lcov
-        sudo apt-get install -yqq libspdlog-dev libfmt-dev libtbb-dev libi2c-dev
+        sudo apt-get install -yqq libspdlog-dev libfmt-dev
         sudo systemctl stop redis
         sudo apt-get install -y g++-11 g++-11-multilib
         echo "CC=gcc-11" >> $GITHUB_ENV
