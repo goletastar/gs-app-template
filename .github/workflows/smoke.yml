@@ -16,6 +16,10 @@ jobs:
 
     name: ${{ matrix.name }}
     runs-on: ${{ matrix.os }}
+    permissions:
+      # required for workflows in private repositories
+      actions: read
+      contents: read
     defaults:
       run:
         shell: bash
@@ -70,7 +74,7 @@ jobs:
         sudo add-apt-repository ppa:ubuntu-toolchain-r/ppa
         sudo apt-get -qq update
         sudo apt-get install -yqq libredis-ipc-dev libgtest-dev libgmock-dev lcov
-        sudo apt-get install -yqq libspdlog-dev libfmt-dev libtbb-dev libi2c-dev
+        sudo apt-get install -yqq libspdlog-dev libfmt-dev
         sudo systemctl stop redis
         if [ "${{ matrix.compiler }}" = gcc ]; then
           sudo apt-get install -y g++-${{ matrix.version }} g++-${{ matrix.version }}-multilib
@@ -106,13 +110,18 @@ jobs:
   check:
     name: Collect metrics
     runs-on: ubuntu-22.04
+    permissions:
+      # required for workflows in private repositories
+      actions: read
+      contents: read
     needs: [build]
+
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - uses: sarnold/cccc-action@main
+    - uses: sarnold/cccc-action@855d440abe1a4229896f36b4d01d88decae0a1f2  # v1.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         source_dirs: |

@@ -23,13 +23,15 @@ add_custom_command(
   COMMAND lcov
     --config-file "${CMAKE_SOURCE_DIR}/.lcovrc"
     --include "${CMAKE_SOURCE_DIR}/*"
-    --exclude "${CMAKE_SOURCE_DIR}/ext/*"
+    --exclude "${CMAKE_SOURCE_DIR}/*/test/"
+    #--exclude "${CMAKE_SOURCE_DIR}/ext/"
     --capture
     --output-file "${TRACEFILE}"
-    --directory .
+    --directory "${CMAKE_BINARY_DIR}"
     ${EXTRA_LCOV_ARGS}
-
-#    --ignore-errors inconsistent,inconsistent,unsupported,unused
+    #--ignore-errors unsupported,unsupported
+    #--ignore-errors inconsistent,inconsistent
+    #--ignore-errors unused,unused
 
   COMMAND genhtml ${TRACEFILE}
     --prefix "."

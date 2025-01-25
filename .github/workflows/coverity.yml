@@ -12,14 +12,20 @@ on:
 jobs:
   convert:
     name: Convert and upload coverity results
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
+    permissions:
+      # required for all workflows
+      security-events: write
+      # required for workflows in private repositories
+      actions: read
+      contents: read
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
     - name: Convert Coverity Results to SARIF
-      uses: gautambaghel/coverity-scan-results-to-sarif@1.0.0
+      uses: gautambaghel/coverity-scan-results-to-sarif@a4c2c4964e93a9bc429656fe5c212e20c02538df  # master
       with:
         pipeline-results-json: coverity-results.json
         output-results-sarif: coverity-results.sarif

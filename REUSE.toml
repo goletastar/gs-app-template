@@ -1,0 +1,20 @@
+version = 1
+
+[[annotations]]
+path = "**"
+SPDX-FileCopyrightText = [
+    "2020-2024 Stephanie Lockwood-Childs <stephanie.lockwood-childs@goletastar.com>",
+    "2020-2024 Stephen Arnold <stephen@goletastar.com>",
+    "2020-2024 Goleta Star, LLC, <https://goletastar.com/>"
+]
+SPDX-License-Identifier = "GPL-3.0-or-later"
+
+# upstream or vendored files
+[[annotations]]
+path = [
+    "cmake/GetGitRev.cmake",
+    "cmake/GetGitRev.cmake.in"
+]
+precedence = "override"
+SPDX-FileCopyrightText = "2009-2010 Iowa State University"
+SPDX-License-Identifier = "BSL-1.0"
