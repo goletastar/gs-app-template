@@ -48,16 +48,7 @@ jobs:
       with:
         languages: ${{ matrix.language }}
         build-mode: ${{ matrix.build-mode }}
-        queries: +security-extended,security-and-quality
-        config: |
-          paths:
-            - cmake
-            - app_name/src
-            - '.github/workflows'
-          paths-ignore:
-            - app_name/test
-            - '.ext'
-            - '.env'
+        config-file: ./.github/codeql/codeql-config.yml
 
     - if: matrix.build-mode == 'manual'
       name: Deps (no msg bus)
