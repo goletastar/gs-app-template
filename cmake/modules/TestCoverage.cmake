@@ -24,7 +24,6 @@ add_custom_command(
     --config-file "${CMAKE_SOURCE_DIR}/.lcovrc"
     --include "${CMAKE_SOURCE_DIR}/*"
     --exclude "${CMAKE_SOURCE_DIR}/*/test/"
-    #--exclude "${CMAKE_SOURCE_DIR}/ext/"
     --capture
     --output-file "${TRACEFILE}"
     --directory "${CMAKE_BINARY_DIR}"
