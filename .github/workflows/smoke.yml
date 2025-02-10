@@ -129,5 +129,5 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: metrics-radar_control
+        name: metrics-app_name
         path: ./metrics
