@@ -14,8 +14,6 @@
 #define VERSION_INFO PACKAGE_STRING
 #endif
 
-static const char *app_name = "app_name";
-
 void version(const char *prog) { std::cout << VERSION_INFO << '\n'; }
 
 void usage(const char *prog) { std::cerr << "Usage: " << prog << " [-v|-V]\n"; }
