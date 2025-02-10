@@ -31,7 +31,7 @@ jobs:
 
         name: [
           ubuntu-22.04-gcc-10,
-          ubuntu-22.04-gcc-11,
+          ubuntu-24.04-gcc-13,
           ubuntu-22.04-clang-14,
         ]
 
@@ -42,10 +42,10 @@ jobs:
             version: "10"
             toxcmd: tests
 
-          - name: ubuntu-22.04-gcc-11
-            os: ubuntu-22.04
+          - name: ubuntu-24.04-gcc-13
+            os: ubuntu-24.04
             compiler: gcc
-            version: "11"
+            version: "13"
             toxcmd: tests
 
           - name: ubuntu-22.04-clang-14
@@ -129,5 +129,5 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: metrics-${{ matrix.version }}
+        name: metrics-radar_control
         path: ./metrics

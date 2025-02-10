@@ -20,7 +20,7 @@ on:
 jobs:
   pre_ci:
     name: Prepare CI environment
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       # only required for workflows in private repositories
       actions: read
@@ -65,7 +65,7 @@ jobs:
 
   base:
     name: Base coverage
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       # only required for workflows in private repositories
       actions: read
@@ -109,7 +109,7 @@ jobs:
 
   check:
     name: Pre CI check
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       # only required for workflows in private repositories
       actions: read
@@ -132,7 +132,7 @@ jobs:
 
   cov_data:
     name: Generate test coverage data
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       # only required for workflows in private repositories
       actions: read
@@ -179,7 +179,7 @@ jobs:
         echo "TEMP_DIR=${TEMP_DIR}" >> $GITHUB_ENV
         bash -c set
 
-    - name: Deps (no msg bus)
+    - name: Deps
       run: |
         sudo apt-get -qq update
         sudo apt-get install -yqq software-properties-common redis-server
@@ -189,9 +189,9 @@ jobs:
         sudo apt-get install -yqq libredis-ipc-dev libgtest-dev libgmock-dev lcov
         sudo apt-get install -yqq libspdlog-dev libfmt-dev
         sudo systemctl stop redis
-        sudo apt-get install -y g++-11 g++-11-multilib
-        echo "CC=gcc-11" >> $GITHUB_ENV
-        echo "CXX=g++-11" >> $GITHUB_ENV
+        sudo apt-get install -y g++-13 g++-13-multilib
+        echo "CC=gcc-13" >> $GITHUB_ENV
+        echo "CXX=g++-13" >> $GITHUB_ENV
 
     - name: Add python requirements
       run: |
@@ -249,7 +249,7 @@ jobs:
 
   test:
     name: Coverage check
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: [cov_data, base]
     permissions:
       # required for workflows in private repositories
@@ -275,7 +275,7 @@ jobs:
 
   comment_cov_change:
     name: Comment on PR with coverage delta
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs: [test, base]
     permissions:
       pull-requests: write
@@ -358,7 +358,7 @@ jobs:
     #   - This is a pull request event and the pull actor is the same as the repo owner
     #     if: ${{ ( github.event_name == 'pull_request' && github.actor == github.repository_owner ) || github.ref == 'refs/heads/master' }}
     name: Generate badge image with test coverage value
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     permissions:
       pull-requests: write
       # required for workflows in private repositories
