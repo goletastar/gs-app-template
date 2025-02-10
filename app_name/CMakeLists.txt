@@ -69,6 +69,7 @@ install(TARGETS app_name DESTINATION ${CMAKE_INSTALL_BINDIR})
 target_link_libraries(app_name app_name_lib ${CMAKE_THREAD_LIBS_INIT})
 
 if(BUILD_TESTING)
+    message(STATUS "cmake test enabled")
     enable_testing()
     # tell ctest to run main app as a test; note this is mainly for illustration
     # purposes, since we want to show at least one branch in the coverage
@@ -99,6 +100,11 @@ if(BUILD_TESTING)
         app_name_test app_name_lib gtest_main gtest gmock
         ${CMAKE_THREAD_LIBS_INIT}
     )
+
+    if(COVERAGE_BUILD)
+        add_coverage(app_name)
+        add_coverage(app_name_test)
+    endif()
 
     message(STATUS "test discovery enabled")
     include(GoogleTest)

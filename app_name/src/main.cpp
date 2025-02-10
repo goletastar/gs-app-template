@@ -14,6 +14,8 @@
 #define VERSION_INFO PACKAGE_STRING
 #endif
 
+static const char *app_name = "app_name";
+
 void version(const char *prog) { std::cout << VERSION_INFO << '\n'; }
 
 void usage(const char *prog) { std::cerr << "Usage: " << prog << " [-v|-V]\n"; }
@@ -35,7 +37,7 @@ int main(int argc, char **argv)
     }
 
     int result = Add(19, 23);
-    std::cout << "The answer is: " << result << "\n";
+    std::cout << "The answer is " << result << "\n";
 
     if (result == 42)
         return 0;
