@@ -52,7 +52,7 @@ jobs:
             os: ubuntu-22.04
             compiler: clang
             version: "14"
-            toxcmd: ctest
+            toxcmd: clang
 
     steps:
     - name: Checkout repo
@@ -81,7 +81,7 @@ jobs:
           echo "CC=gcc-${{ matrix.version }}" >> $GITHUB_ENV
           echo "CXX=g++-${{ matrix.version }}" >> $GITHUB_ENV
         else
-          sudo apt-get install -y clang-${{ matrix.version }} llvm-${{ matrix.version }} lld-${{ matrix.version }}
+          sudo apt-get install -y clang-${{ matrix.version }} clang++-${{ matrix.version }} llvm-${{ matrix.version }} lld-${{ matrix.version }}
           echo "CC=clang-${{ matrix.version }}" >> $GITHUB_ENV
           echo "CXX=clang++-${{ matrix.version }}" >> $GITHUB_ENV
         fi
