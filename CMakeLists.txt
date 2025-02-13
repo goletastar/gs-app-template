@@ -95,6 +95,7 @@ set(WITH_COVERAGE
     ""
     CACHE PATH "build with test coverage enabled"
 )
+option(COVERAGE_BUILD "use source-based LLVM code coverage" OFF)
 
 if(VENDOR_GTEST)
     include(FetchContent)
@@ -117,7 +118,12 @@ endif()
 # ~~~
 if(WITH_COVERAGE)
     set(BUILD_TESTING ON)
-    include(TestCoverage)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL Clang)
+        set(COVERAGE_BUILD ON)
+        include(coverage)
+    else()
+        include(TestCoverage)
+    endif()
 endif()
 
 # Generate config.h

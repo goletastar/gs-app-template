@@ -18,7 +18,6 @@ add_custom_command(
   WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
   COMMAND ${CMAKE_COMMAND} -E remove "${TRACEFILE}"
   COMMAND ${CMAKE_COMMAND} -E remove_directory "${COVERAGE_OUTPUT_DIR}"
-  COMMAND ${CMAKE_CTEST_COMMAND}  # execute default test suite
 
   COMMAND lcov
     --config-file "${CMAKE_SOURCE_DIR}/.lcovrc"
@@ -32,11 +31,12 @@ add_custom_command(
     #--ignore-errors inconsistent,inconsistent
     #--ignore-errors unused,unused
 
-  COMMAND genhtml ${TRACEFILE}
-    --prefix "."
-    --title "${CMAKE_PROJECT_NAME}"
-    --legend --show-details
-    --output-directory ${REPORT_DIR}
+  COMMAND ${CMAKE_COMMAND} -E make_directory "${COVERAGE_OUTPUT_DIR}"
+  #COMMAND genhtml ${TRACEFILE}
+    #--prefix "."
+    #--title "${CMAKE_PROJECT_NAME}"
+    #--legend --show-details
+    #--output-directory ${REPORT_DIR}
 
   VERBATIM  # for correct handling of wildcards in command line parameters
 )

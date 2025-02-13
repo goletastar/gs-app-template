@@ -31,7 +31,7 @@ jobs:
 
         name: [
           ubuntu-22.04-gcc-10,
-          ubuntu-22.04-gcc-11,
+          ubuntu-24.04-gcc-13,
           ubuntu-22.04-clang-14,
         ]
 
@@ -42,17 +42,17 @@ jobs:
             version: "10"
             toxcmd: tests
 
-          - name: ubuntu-22.04-gcc-11
-            os: ubuntu-22.04
+          - name: ubuntu-24.04-gcc-13
+            os: ubuntu-24.04
             compiler: gcc
-            version: "11"
+            version: "13"
             toxcmd: tests
 
           - name: ubuntu-22.04-clang-14
             os: ubuntu-22.04
             compiler: clang
             version: "14"
-            toxcmd: ctest
+            toxcmd: clang
 
     steps:
     - name: Checkout repo
@@ -81,7 +81,7 @@ jobs:
           echo "CC=gcc-${{ matrix.version }}" >> $GITHUB_ENV
           echo "CXX=g++-${{ matrix.version }}" >> $GITHUB_ENV
         else
-          sudo apt-get install -y clang-${{ matrix.version }} llvm-${{ matrix.version }} lld-${{ matrix.version }}
+          sudo apt-get install -y clang-${{ matrix.version }} clang++-${{ matrix.version }} llvm-${{ matrix.version }} lld-${{ matrix.version }}
           echo "CC=clang-${{ matrix.version }}" >> $GITHUB_ENV
           echo "CXX=clang++-${{ matrix.version }}" >> $GITHUB_ENV
         fi
@@ -129,5 +129,5 @@ jobs:
 
     - uses: actions/upload-artifact@v4
       with:
-        name: metrics-${{ matrix.version }}
+        name: metrics-app_name
         path: ./metrics
