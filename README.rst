@@ -379,6 +379,6 @@ to the recipe ``DEPENDS``.
     :target: https://github.com/goletastar/gs-app-template/releases
     :alt: Static value (no tags)
 
-.. |std| image:: https://img.shields.io/badge/Standards-C++11%20%20C99-00000.svg
-    :target: https://isocpp.org/wiki/faq/cpp11
+.. |std| image:: https://img.shields.io/badge/Standards-C++17%20%20C11-00000.svg
+    :target: https://isocpp.org/wiki/faq/cpp17
     :alt: Language standards
