@@ -32,7 +32,7 @@ jobs:
         name: [
           ubuntu-22.04-gcc-10,
           ubuntu-24.04-gcc-13,
-          ubuntu-22.04-clang-14,
+          ubuntu-22.04-clang-15,
         ]
 
         include:
@@ -48,10 +48,10 @@ jobs:
             version: "13"
             toxcmd: tests
 
-          - name: ubuntu-22.04-clang-14
+          - name: ubuntu-22.04-clang-15
             os: ubuntu-22.04
             compiler: clang
-            version: "14"
+            version: "15"
             toxcmd: clang
 
     steps:
@@ -81,9 +81,10 @@ jobs:
           echo "CC=gcc-${{ matrix.version }}" >> $GITHUB_ENV
           echo "CXX=g++-${{ matrix.version }}" >> $GITHUB_ENV
         else
-          sudo apt-get install -y clang-${{ matrix.version }} clang++-${{ matrix.version }} llvm-${{ matrix.version }} lld-${{ matrix.version }}
+          sudo apt-get install -y clang-${{ matrix.version }} clang++-${{ matrix.version }} llvm-${{ matrix.version }}-tools lld-${{ matrix.version }}
           echo "CC=clang-${{ matrix.version }}" >> $GITHUB_ENV
           echo "CXX=clang++-${{ matrix.version }}" >> $GITHUB_ENV
+          echo "LLVM_VER_DIR=/usr/lib/llvm-${{ matrix.version }}" >> $GITHUB_ENV
         fi
 
     - uses: actions/setup-python@v5
