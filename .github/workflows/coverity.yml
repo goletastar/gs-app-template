@@ -25,7 +25,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Convert Coverity Results to SARIF
-      uses: gautambaghel/coverity-scan-results-to-sarif@0c27ac7142dbbe9e1ebe0a57271e783aa8367e66  # master
+      uses: gautambaghel/coverity-scan-results-to-sarif@36dca6662114a9c15d239ed25f1d8cf15dd47f8c  # master
       with:
         pipeline-results-json: coverity-results.json
         output-results-sarif: coverity-results.sarif
