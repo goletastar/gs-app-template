@@ -22,7 +22,7 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Convert Coverity Results to SARIF
       uses: gautambaghel/coverity-scan-results-to-sarif@36dca6662114a9c15d239ed25f1d8cf15dd47f8c  # master
