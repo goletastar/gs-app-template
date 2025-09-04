@@ -87,7 +87,7 @@ jobs:
           echo "LLVM_VER_DIR=/usr/lib/llvm-${{ matrix.version }}" >> $GITHUB_ENV
         fi
 
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
 
