@@ -66,7 +66,7 @@ jobs:
         echo "CXX=g++-11" >> $GITHUB_ENV
 
     - if: matrix.build-mode == 'manual'
-      uses: actions/setup-python@v6
+      uses: actions/setup-python@v7
       with:
         python-version: "3.11"
 
